@@ -1,0 +1,18 @@
+In Circle1.java
+
+There was an error regarding the calculation of intersections.
+intersectsCircle() found this error
+
+
+In Circle.java
+
+There was an error where scale was miscalculating due to operation error.
+scaleCircle() found this error
+There was another error where moveBy was only adding the xOffset to both center.x and center.y
+moveByTest() found this error
+
+
+in Circle2.java
+
+There was another calculation error regarding intersection.
+intersectsCircle() found this errors

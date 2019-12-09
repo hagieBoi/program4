@@ -1,0 +1,47 @@
+<project name = "JunitTest" default = "test" basedir = ".">
+   <property name = "testdir" location = "test" />
+   <property name = "srcdir" location = "." />
+   <property name = "full-compile" value = "true" />
+   <property name = "junit-loc" location = "/home/hagie/junit/junit.jar" />
+   <property name = "hamcrest-loc" location = "/home/hagie/junit/hamcrest.jar" />
+	
+   <path id = "classpath.base"/>
+	
+   <path id = "classpath.test">
+      <pathelement location = "${junit-loc}" />
+      <pathelement location = "${hamcrest-loc}" />
+      <pathelement location = "${testdir}" />
+      <pathelement location = "${srcdir}" />
+      <path refid = "classpath.base" />
+   </path>
+	
+   <target name = "clean" >
+      <delete verbose = "${full-compile}">
+         <fileset dir = "${srcdir}" includes = "**/*.class" />
+      </delete>
+   </target>
+	
+   <target name = "compileTest" depends="clean">
+      <javac srcdir = "${srcdir}" destdir = "${srcdir}" 
+         verbose = "${full-compile}">
+         <classpath refid = "classpath.test"/>
+      </javac>
+   </target>
+	
+ <target name="test" depends="compileTest">
+  <junit>  
+	<classpath>
+    	<pathelement location= "." />    
+    	<pathelement location = "${junit-loc}"/>
+		  <pathelement location = "${hamcrest-loc}"/>
+    </classpath>    
+	<batchtest>
+       <fileset dir=".">
+            <include name="*Test.java" />
+       </fileset>
+    </batchtest>
+    <formatter type="brief" usefile="false"/>
+  </junit>
+</target>   
+	
+</project>
